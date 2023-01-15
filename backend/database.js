@@ -1,6 +1,6 @@
 //variable para que utilice las librerias de moongoose
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost/dbtp5';
+const URI = 'mongodb://mongoDB:27017/dbHIA';
 //conectando con la bdd
 mongoose.connect(URI)
 .then(db=>console.log('DB is connected'))
