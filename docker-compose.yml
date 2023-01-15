@@ -1,0 +1,40 @@
+version: '3'
+
+networks:
+  RED-HIA:
+    driver: bridge
+
+services:
+  frontend:
+    image: angular
+    ports:
+      - 4200:80
+    networks:
+      - RED-HIA
+  
+  backend:
+    image: backend
+    ports:
+      - 3000:3000
+    networks:
+      - RED-HIA
+
+  mongoDB:
+    image: mongo
+    volumes:
+      - "./data:/data/db"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_DATABASE=dbHIA
+    networks:
+      - RED-HIA
+  
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=tp-backend-mongoDB-1
+    networks:
+      - RED-HIA
